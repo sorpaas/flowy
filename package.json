@@ -1,0 +1,16 @@
+{
+  "name": "flowy",
+  "author": "sorpa'as plat <me@sorpaas.com>",
+  "description": "Stop talking about API, start talking about data. ",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sorpaas/flowy.git"
+  },
+  "dependencies": {
+    "express": "3.x"
+  },
+  "devDependencies": {},
+  "optionalDependencies": {},
+  "license": "MIT"
+}
