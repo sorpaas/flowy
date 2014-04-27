@@ -23,7 +23,11 @@ Flowy.component("speaker", {
   output_resource: ["/message"]
 });
 
-Flowy.put("/login/username", "hello");
-Flowy.put("/login/password", "world");
+//Flowy.put("/login/username", "hello");
+//Flowy.put("/login/password", "world");
 
-console.log(Flowy.get("/message"));
+//console.log(Flowy.get("/message"));
+
+Flowy.listen(3000, function() {
+  console.log('listening on port 3000');
+});
