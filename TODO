@@ -3,3 +3,5 @@
 * Design the flow representation SDL.
 * Add SQL language for querying.
 * Make a UI for flowy.
+* Add Read/Write System.
+* Implement "Session" System.
