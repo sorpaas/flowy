@@ -13,7 +13,23 @@ function component(name, com) {
 
 var resources = {};
 function put(key, value) {
-  resources[key] = value;
+  if(is_mounted(key)) {
+    var mount_path;
+    var remaining_path;
+    
+    for(var provider_name in providers) {
+      if(key.startsWith(provider_name)) {
+        mount_path = provider_name;
+        remaining_path = key.substring(mount_path.length, key.length - 1);
+        break;
+      }
+    }
+    
+    providers[mount_path].put(remaining_path, value);
+  } else {
+    resources[key] = value;
+  }
+  
   for(var com_key in components) {
     for(var i in components[com_key].ins) {
       if(components[com_key].ins[i] === "res:" + key) {
@@ -35,7 +51,7 @@ function get(key) {
       }
     }
     
-    return providers[mount_path](remaining_path);
+    return providers[mount_path].get(remaining_path);
   }
   return resources[key];
 }
