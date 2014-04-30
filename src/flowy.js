@@ -23,10 +23,45 @@ function put(key, value) {
   }
 }
 function get(key) {
+  if(is_mounted(key)) {
+    var mount_path;
+    var remaining_path;
+    
+    for(var provider_name in providers) {
+      if(key.startsWith(provider_name)) {
+        mount_path = provider_name;
+        remaining_path = key.substring(mount_path.length, key.length - 1);
+        break;
+      }
+    }
+    
+    return providers[mount_path](remaining_path);
+  }
   return resources[key];
 }
 
+var providers = {};
+function mount(path, provider) {
+  if(is_mounted(path)){
+    throw 'already mounted';
+  }
+  providers[path] = provider;
+}
+
+function unmont(path) {
+  providers[path] = null;
+}
+
 //---
+
+function is_mounted(path) {
+  for(var provider_name in providers) {
+    if(path.startsWith(provider_name) {
+      return true;
+    }
+  }
+  return false;
+}
 
 function get_in(key) {
   var arr = key.split(":");
@@ -119,5 +154,7 @@ module.exports = {
   put: put,
   get: get,
   debug: debug,
-  listen: listen
+  listen: listen,
+  mount: mount,
+  unmount: unmount
 }
