@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "express": "3.x",
+    "sweet.js": "0.5.0"
   },
   "devDependencies": {},
   "optionalDependencies": {},
